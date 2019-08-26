@@ -38,8 +38,9 @@ public class CaluladoraServices {
     public Mono<List<Amortizacion>> tablaAmortizacion (Integer numberOfFees, Integer creditAmount) {
         return Mono.just(Arrays.asList(numberOfFees, creditAmount)).flatMap(amortizar);
     }
-
-
-
+    @GetMapping(value = "/pagoNeto")
+    public Mono tablaPagoNeto (Integer salarioBase) {
+        return Mono.just(Arrays.asList(salarioBase)).flatMap(saldoNeto);
+    }
 
 }

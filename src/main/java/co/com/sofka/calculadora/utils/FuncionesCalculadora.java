@@ -1,6 +1,8 @@
 package co.com.sofka.calculadora.utils;
 
 import reactor.core.publisher.Mono;
+
+import javax.print.attribute.IntegerSyntax;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
@@ -46,4 +48,35 @@ public class FuncionesCalculadora {
         return Mono.just(tablaPrestamo);
     };
 
+
+    public static Function<List<Integer>, Mono<List<PagoNeto>>> saldoNeto = lista -> {
+        final double salarioBase = lista.get(0);
+        final double interesSaludEmpleado = 0.04;
+        final double interesSaludEmpleador = 0.12;
+        final double interesPensionEmpleador = 0.085;
+        final double interesPensionEmpleado = 0.04;
+        final double riesgoLaborales = 0.005;
+        final double cajaCompensacion = 0.04;
+        final double pagoNetoEmpleado = salarioBase - (salarioBase * (interesSaludEmpleado + interesPensionEmpleado));
+        final double pagoDelEmpleado = ((salarioBase * interesPensionEmpleado) + (salarioBase * interesSaludEmpleado));
+        final double pagoDelEmpleador  = (salarioBase * (interesSaludEmpleador + interesPensionEmpleador + riesgoLaborales + cajaCompensacion));
+        final double salarioMinimo = 4 * 828.116;
+        final double aporteFSP = salarioBase >= salarioMinimo ? 0.01 : 0.00;
+
+        List<PagoNeto> tablaPagoNeto = new ArrayList<>(0);
+         tablaPagoNeto.add(PagoNeto.builder()
+                 .salarioBase(salarioBase)
+                 .interesSaludEmpleado(interesSaludEmpleado)
+                 .interesSaludEmpleador(interesSaludEmpleador)
+                 .interesPensionEmpleado(interesPensionEmpleado)
+                 .riesgoLaborales(riesgoLaborales)
+                 .aporteFSP(aporteFSP)
+                 .cajaCompensacion(cajaCompensacion)
+                 .interesPensionEmpleador(interesPensionEmpleador)
+                      .pagoFinalEmpleado(pagoNetoEmpleado)
+                      .costoEmpleado(pagoDelEmpleado)
+                      .costoEmpleador(pagoDelEmpleador).build());
+
+        return Mono.just(tablaPagoNeto);
+    };
 }
