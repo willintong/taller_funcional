@@ -2,6 +2,7 @@ package co.com.sofka.calculadora.controller;
 
 import co.com.sofka.calculadora.utils.Amortizacion;
 import co.com.sofka.calculadora.utils.FuncionesCalculadora;
+import co.com.sofka.calculadora.utils.PagoNeto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,8 +40,8 @@ public class CaluladoraServices {
         return Mono.just(Arrays.asList(numberOfFees, creditAmount)).flatMap(amortizar);
     }
     @GetMapping(value = "/pagoNeto")
-    public Mono tablaPagoNeto (Integer salarioBase) {
-        return Mono.just(Arrays.asList(salarioBase)).flatMap(saldoNeto);
+    public Mono<PagoNeto> tablaPagoNeto (Integer salarioBase) {
+        return Mono.just(salarioBase).flatMap(saldoNeto);
     }
 
 }

@@ -2,7 +2,7 @@ package co.com.sofka.calculadora.utils;
 
 import reactor.core.publisher.Mono;
 
-import javax.print.attribute.IntegerSyntax;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
@@ -49,8 +49,8 @@ public class FuncionesCalculadora {
     };
 
 
-    public static Function<List<Integer>, Mono<List<PagoNeto>>> saldoNeto = lista -> {
-        final double salarioBase = lista.get(0);
+    public static Function<Integer, Mono<PagoNeto>> saldoNeto = sueldito -> {
+        final double salarioBase = sueldito;
         final double interesSaludEmpleado = 0.04;
         final double interesSaludEmpleador = 0.12;
         final double interesPensionEmpleador = 0.085;
@@ -63,8 +63,7 @@ public class FuncionesCalculadora {
         final double salarioMinimo = 4 * 828.116;
         final double aporteFSP = salarioBase >= salarioMinimo ? 0.01 : 0.00;
 
-        List<PagoNeto> tablaPagoNeto = new ArrayList<>(0);
-         tablaPagoNeto.add(PagoNeto.builder()
+        return Mono.just(PagoNeto.builder()
                  .salarioBase(salarioBase)
                  .interesSaludEmpleado(interesSaludEmpleado)
                  .interesSaludEmpleador(interesSaludEmpleador)
@@ -73,10 +72,9 @@ public class FuncionesCalculadora {
                  .aporteFSP(aporteFSP)
                  .cajaCompensacion(cajaCompensacion)
                  .interesPensionEmpleador(interesPensionEmpleador)
-                      .pagoFinalEmpleado(pagoNetoEmpleado)
-                      .costoEmpleado(pagoDelEmpleado)
-                      .costoEmpleador(pagoDelEmpleador).build());
+                 .pagoFinalEmpleado(pagoNetoEmpleado)
+                 .costoEmpleado(pagoDelEmpleado)
+                 .costoEmpleador(pagoDelEmpleador).build());
 
-        return Mono.just(tablaPagoNeto);
     };
 }

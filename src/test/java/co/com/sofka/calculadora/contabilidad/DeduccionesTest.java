@@ -2,9 +2,7 @@ package co.com.sofka.calculadora.contabilidad;
 
 import org.junit.Assert;
 import org.junit.Test;
-import reactor.core.publisher.Mono;
 
-import static org.junit.Assert.*;
 
 public class DeduccionesTest {
 

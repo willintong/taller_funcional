@@ -1,11 +1,8 @@
 package co.com.sofka.calculadora.contabilidad;
 
-import java.math.BigDecimal;
-import java.util.Arrays;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
+import java.util.function.Function;
+import java.util.stream.Stream;
 public class Deducciones {
 
     final static double CAJA_COMPENSACION = 0.04;
