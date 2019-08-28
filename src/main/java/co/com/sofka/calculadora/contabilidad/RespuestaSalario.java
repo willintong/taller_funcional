@@ -11,11 +11,11 @@ public class RespuestaSalario {
     private final Double salarioBase;
     private final double aporteSaludEmpleado;
     private final double aporteSaludEmpleador;
+    private final double pagoNetoSaludPensionEmpleado;
+    private final double costoSaludPensionCajaRiesgosEmpleador;
     private final double aportePensionEmpleado;
     private final double aportePensionEmpleador;
     private final double aporteRiesgosLaborales;
     private final Double aporteCajaDeCompensacion;
     private final double aporteFSP;
-    private final double pagoNetoEmpleado;
-    private final double costoEmpleador;
 }

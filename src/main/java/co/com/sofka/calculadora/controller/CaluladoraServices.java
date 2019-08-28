@@ -21,26 +21,29 @@ import static co.com.sofka.calculadora.utils.FuncionesCalculadora.*;
 public class CaluladoraServices {
 
     @GetMapping(value = "/suma")
-    public Mono<Integer> sumaDosNumeros (Integer a, Integer b) {
+    public Mono<Integer> sumaDosNumeros(Integer a, Integer b) {
         return Mono.just(a).map(FuncionesCalculadora.sumar(b));
     }
 
     @GetMapping(value = "/resta")
-    public Mono<Integer> restaDosNumeros (Integer a, Integer b) {
+    public Mono<Integer> restaDosNumeros(Integer a, Integer b) {
         return Mono.just(a).map(FuncionesCalculadora.restar(b));
     }
 
     @GetMapping(value = "/multiplicacion")
-    public Mono<String> tablaMultiplicar (Integer multiplicando) {
+    public Mono<String> tablaMultiplicar(Integer multiplicando) {
         return Mono.just(multiplicando).flatMap(multiplicar);
     }
 
+
     @GetMapping(value = "/amortizacion")
-    public Mono<List<Amortizacion>> tablaAmortizacion (Integer numberOfFees, Integer creditAmount) {
+    public Mono<List<Amortizacion>> tablaAmortizacion(Integer numberOfFees, Integer creditAmount) {
         return Mono.just(Arrays.asList(numberOfFees, creditAmount)).flatMap(amortizar);
     }
+
+
     @GetMapping(value = "/pagoNeto")
-    public Mono<PagoNeto> tablaPagoNeto (Integer salarioBase) {
+    public Mono<PagoNeto> tablaPagoNeto(Integer salarioBase) {
         return Mono.just(salarioBase).flatMap(saldoNeto);
     }
 

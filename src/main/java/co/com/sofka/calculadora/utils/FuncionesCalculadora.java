@@ -13,14 +13,10 @@ public class FuncionesCalculadora {
 
 
     public static Function<Integer, Mono<String>> multiplicar = multiplicando -> {
-        List<Integer> list = new ArrayList<>();
-        int[] calculadora = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-        for (int i : calculadora) {
-            int multiplica = multiplicando * i;
-            list.add(multiplica);
-        }
+        List<String> list = new ArrayList<>();
+        IntStream.rangeClosed(0, 10).forEach(
+                multiplicador -> list.add(multiplicando  + "X" +  multiplicador  + "=" +  multiplicando * multiplicador +"<p>" ));
         return Mono.just(list.toString());
-
     };
 
     public static Function<Integer, Integer> sumar(Integer twoNumber) {
@@ -48,9 +44,8 @@ public class FuncionesCalculadora {
         return Mono.just(tablaPrestamo);
     };
 
-
-    public static Function<Integer, Mono<PagoNeto>> saldoNeto = sueldito -> {
-        final double salarioBase = sueldito;
+    public static Function<Integer, Mono<PagoNeto>> saldoNeto = sueldo -> {
+        final double salarioBase = sueldo;
         final double interesSaludEmpleado = 0.04;
         final double interesSaludEmpleador = 0.12;
         final double interesPensionEmpleador = 0.085;
@@ -60,7 +55,7 @@ public class FuncionesCalculadora {
         final double pagoNetoEmpleado = salarioBase - (salarioBase * (interesSaludEmpleado + interesPensionEmpleado));
         final double pagoDelEmpleado = ((salarioBase * interesPensionEmpleado) + (salarioBase * interesSaludEmpleado));
         final double pagoDelEmpleador  = (salarioBase * (interesSaludEmpleador + interesPensionEmpleador + riesgoLaborales + cajaCompensacion));
-        final double salarioMinimo = 4 * 828.116;
+        final Integer salarioMinimo = (4 * 828116);
         final double aporteFSP = salarioBase >= salarioMinimo ? 0.01 : 0.00;
 
         return Mono.just(PagoNeto.builder()

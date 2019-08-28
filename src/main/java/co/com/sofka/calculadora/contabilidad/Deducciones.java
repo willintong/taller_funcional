@@ -45,4 +45,19 @@ public class Deducciones {
     }
 
 
+    public static double riesgosLaboralesEmpleador(double salarioBase, double aporteRiesgosLaborales) {
+        return salarioBase * aporteRiesgosLaborales;
+    }
+
+    public static double aporteFPSEmpleador(double salarioBase, double aporteFSP) {
+        return salarioBase * aporteFSP;
+    }
+
+    public static double salarioNetoEmpleado(double salarioBase, double aporteSaludPensionEmpleado) {
+        return salarioBase * aporteSaludPensionEmpleado;
+    }
+
+    public static double salarioNetoEmpleador(double salarioBase, double aporteSaludPensionCajaRiesgosEmpleador) {
+        return salarioBase * aporteSaludPensionCajaRiesgosEmpleador;
+    }
 }
